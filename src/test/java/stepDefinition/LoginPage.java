@@ -1,4 +1,4 @@
-package stepDefination;
+package stepDefinition;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -7,11 +7,21 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     WebDriver driver;
+    @FindBy(id = "user-name")
+    WebElement uName;
+    public LoginPage {
+        PageFactory.initElements(driver, this);
+    }
+
     @Given("^User is on Login Page$")
     public void User_is_on_Login_Page(){
         WebDriverManager.chromedriver().setup();
@@ -21,9 +31,10 @@ public class LoginPage {
 
     @When("^User enter username and password$")
     public void User_enter_username_and_password(){
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        uName.sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
     }
+
     @And("^User click on login button$")
     public void User_click_on_login_button(){
         driver.findElement(By.id("login-button")).click();
