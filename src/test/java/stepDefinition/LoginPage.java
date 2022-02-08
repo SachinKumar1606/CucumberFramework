@@ -7,20 +7,13 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     WebDriver driver;
-    @FindBy(id = "user-name")
-    WebElement uName;
-    public LoginPage {
-        PageFactory.initElements(driver, this);
-    }
 
     @Given("^User is on Login Page$")
     public void User_is_on_Login_Page(){
@@ -31,7 +24,7 @@ public class LoginPage {
 
     @When("^User enter username and password$")
     public void User_enter_username_and_password(){
-        uName.sendKeys("standard_user");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
     }
 
