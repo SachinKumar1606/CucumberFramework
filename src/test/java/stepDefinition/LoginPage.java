@@ -8,9 +8,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
     WebDriver driver;
@@ -22,7 +20,8 @@ public class LoginPage {
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
-    @When("^User enter username and password$")
+//    @When("^User enter \"(.*)\" and \"(.*)\"$")
+@When("^User enter Username and Password$")
     public void User_enter_username_and_password(){
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -37,6 +36,17 @@ public class LoginPage {
     public void User_is_on_Inventory_page(){
         String act = driver.getCurrentUrl();
         String ext = "https://www.saucedemo.com/inventory.html";
+        Assert.assertEquals(ext,act);
+    }
+    @When("^User enter invalid Username and Password$")
+    public void User_enter_invalid_username_and_password(){
+        driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+    }
+    @Then("^User is on same page$")
+    public void User_is_on_same_page(){
+        String act = driver.getCurrentUrl();
+        String ext = "https://www.saucedemo.com/";
         Assert.assertEquals(ext,act);
     }
 }

@@ -8,8 +8,10 @@ import org.junit.runner.RunWith;
 //
 //@RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "C://Users//SachinKumar//Documents//SachinKumar//Projects//CucumberFramework//src//test//java//features",
-        glue = {"stepDefinition"}
+        features = "C://Users//SachinKumar//Documents//SachinKumar//Projects//CucumberFramework"
+                +"//src//test//java//features",
+        glue = {"stepDefinition"},
+        dryRun = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
