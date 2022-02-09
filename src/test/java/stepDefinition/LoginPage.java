@@ -1,13 +1,9 @@
 package stepDefinition;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class LoginPage {
@@ -35,6 +31,14 @@ public class LoginPage {
     public void User_is_on_Inventory_page(){
         String act = driver.getCurrentUrl();
         String ext = "https://www.saucedemo.com/inventory.html";
+        driver.close();
+        Assert.assertEquals(ext,act);
+    }
+
+    @Then ("User is on Home page")
+    public void Then_User_is_on_Home_page(){
+        String act = driver.getCurrentUrl();
+        String ext = "https://www.saucedemo.com/";
         driver.close();
         Assert.assertEquals(ext,act);
     }
